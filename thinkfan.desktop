@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Thinkfan
+Icon=/opt/fancontrol/icon.png
+Exec=/opt/fancontrol/fan-pkexec
+StartupWMClass=Tk
+Categories=System;System-Tools;

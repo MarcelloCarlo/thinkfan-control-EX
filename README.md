@@ -16,10 +16,7 @@ It is written for Linux only. For windows, see http://www.almico.com/speedfan.ph
 `sudo apt install lm-sensors python3 python3-tk`
 
 ## Setup
-+ Open this file, using command -- `sudo nano /etc/modprobe.d/thinkpad_acpi.conf` 
-+ Add line `options thinkpad_acpi fan_control=1`
-+ Reboot. 
-+ `python3 fan.py`
++ make install
 
 ( Add `sudo` to modify speed )
 
