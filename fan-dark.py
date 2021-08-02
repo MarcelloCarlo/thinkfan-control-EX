@@ -45,6 +45,7 @@ def printLevel():
 
 class MainApplication(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
+        root.tk_setPalette(background='#383838')
         tk.Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
         self.parent.minsize(width=100, height=100)
