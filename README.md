@@ -19,9 +19,9 @@ It is written for Linux only. For windows, see http://www.almico.com/speedfan.ph
  + Modifies `/proc/acpi/ibm/fan` to change fan speed
 
 ## Dependencies
-lm-sensors
-python3
-python-tk
++ lm-sensors
++ python3
++ python-tk
 
 
 ## Setup
