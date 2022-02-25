@@ -1,6 +1,12 @@
 # Thinkpad Fan Control GUI
 
-![Screenshot](https://i.imgur.com/6lBqjXr.png)
+# Light Mode
+
+![Screenshot](https://i.imgur.com/tEXcaEQ.png)
+
+# Dark Mode
+
+![Screenshot](https://i.imgur.com/t0rEGlc.png)
 
 This is an application for controlling fan speed on IBM/Lenovo ThinkPads.
 
@@ -13,11 +19,14 @@ It is written for Linux only. For windows, see http://www.almico.com/speedfan.ph
  + Modifies `/proc/acpi/ibm/fan` to change fan speed
 
 ## Dependencies
-`sudo apt install lm-sensors python3 python3-tk`
+lm-sensors
+python3
+python-tk
+
 
 ## Setup
 + chmod +x install.sh
-+ ./install.sh
++ sudo ./install.sh
 
 ---
 
