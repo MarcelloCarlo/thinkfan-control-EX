@@ -1,2 +1,2 @@
 #!/bin/sh
-pkexec "/opt/fancontrol/fan.py" "$@"
+pkexec "/opt/fancontrol/fancontrol" "$@"

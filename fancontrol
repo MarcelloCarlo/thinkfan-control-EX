@@ -1,0 +1,3 @@
+#include <stdlib.h>
+...
+int status = system("python3 /opt/fancontrol/src/fan.py");
