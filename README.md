@@ -12,7 +12,7 @@ This is an application for controlling fan speed on IBM/Lenovo ThinkPads.
 
 It can also monitor CPU temp and fan RPM.
 
-It is written for Linux only. For windows, see http://www.almico.com/speedfan.php   
+It is written for Linux only. For windows, see http://www.almico.com/speedfan.php
 
 ## How it Works?
  + Parses `sensors` command to show CPU temp and fan RPM
@@ -22,6 +22,7 @@ It is written for Linux only. For windows, see http://www.almico.com/speedfan.ph
 + lm-sensors
 + python3
 + python-tk
++ pystray
 
 
 ## Setup
