@@ -10,17 +10,20 @@ import pystray
 from PIL import Image, ImageTk
 import subprocess as sub
 
-def quit_window(icon, item):
-    icon.stop()
-    root.destroy()
+def exit_action(icon):
+    icon.visible = False
+    icon.stop(0)
 def show_window(icon, item):
     icon.stop()
     root.after(0,root.deiconify())
+def quit_window(icon, item):
+    icon.stop()
+    root.destroy()
 def hide_window():
     root.withdraw()
     image=Image.open("/opt/fancontrol/Resources/icon.png")
     menu=(
-        item('Quit', quit_window),
+        item('Quit', lambda : exit_action(icon)),
         item('Show', show_window, default=True)
         )
     icon=pystray.Icon("name", image, "Thinkfan Control", menu)
