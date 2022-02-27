@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import tkinter as tk
-import os
 import subprocess
 from tkinter import *
 from time import sleep
@@ -12,7 +11,7 @@ import subprocess as sub
 
 def exit_action(icon):
     icon.visible = False
-    icon.stop(0)
+    icon.stop()
 def show_window(icon, item):
     icon.stop()
     root.after(0,root.deiconify())

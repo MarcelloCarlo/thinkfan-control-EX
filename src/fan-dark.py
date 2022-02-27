@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import tkinter as tk
-import os
 import subprocess
 from tkinter import *
 from time import sleep
@@ -12,7 +11,7 @@ import subprocess as sub
 
 def exit_action(icon):
     icon.visible = False
-    icon.stop(0)
+    icon.stop()
 def show_window(icon, item):
     icon.stop()
     root.after(0,root.deiconify())
@@ -40,7 +39,7 @@ def set_speed(speed=None):
         'echo level {0} | sudo tee "/proc/acpi/ibm/fan"'.format(speed),
         shell=True
     ).decode()
-    
+
 def get_info():
     info_lines = subprocess.check_output("sensors").decode("utf-8").split("\n")
     result = []
@@ -105,4 +104,3 @@ if __name__ == "__main__":
     root.title("Thinkfan Control")
     MainApplication(root).grid()
     root.mainloop()
-
