@@ -5,10 +5,29 @@ import subprocess
 from tkinter import *
 from time import sleep
 from threading import Thread
-
-
-#Get system info
+from pystray import MenuItem as item
+import pystray
+from PIL import Image, ImageTk
 import subprocess as sub
+
+
+
+def show_window(icon, item):
+    icon.stop()
+    root.after(0,root.deiconify())
+def quit_window(icon, item):
+    icon.stop()
+    root.destroy()
+def hide_window():
+    root.withdraw()
+    image=Image.open("/opt/fancontrol/Resources/icon.png")
+    menu=(
+        item('Quit', quit_window),
+        item('Show', show_window, default=True)
+        )
+    icon=pystray.Icon("name", image, "Thinkfan Control", menu)
+    icon.run()
+
 
 def set_speed(speed=None):
     """
@@ -33,13 +52,7 @@ def get_info():
         if "fan" in i:
             result.append("Fan : " + i.split(":")[-1].strip())
             count +=1
-
-        if "Level" in i:
-            result.append(("Level : %r" % speed) + i.split(":")[1].strip())
     return result
-
-def printLevel():
-    print("set level to %r" % speed)
 
 
 class MainApplication(tk.Frame):
@@ -52,19 +65,17 @@ class MainApplication(tk.Frame):
         main_label = tk.Label(parent, text="",bg="#000000", fg="white")
         main_label.grid(row=0, column=0)
 
-
         row1 = tk.Frame()
         row1.grid()
+
 
         for i in range(8):
             tk.Button(row1, text=str(i), highlightbackground="#1A1C1A", bg="#000000", fg="white", highlightcolor="#1A1C1A", highlightthickness=3, bd=0, activebackground="#e60012", activeforeground="white", command=lambda x=i: set_speed(x)).grid(
                 row=0, column=i + 1
             )
 
-
         row2 = tk.Frame()
         row2.grid()
-
 
         tk.Button(row2, text="Auto", highlightbackground="#1A1C1A", bg="#000000", fg="white", highlightcolor="#1A1C1A", highlightthickness = 3, bd = 0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("auto")).grid(
             row=0, column=0
@@ -88,6 +99,7 @@ if __name__ == "__main__":
 
     root = tk.Tk()
     img = tk.Image("photo", file='/opt/fancontrol/Resources/icon.png')
+    root.protocol('WM_DELETE_WINDOW', hide_window)
     root.tk.call('wm','iconphoto',root._w,img)
     root.title("Thinkfan Control")
     MainApplication(root).grid()

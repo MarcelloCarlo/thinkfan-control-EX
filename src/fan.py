@@ -1,13 +1,30 @@
+#!/usr/bin/python3
 import tkinter as tk
 import os
 import subprocess
 from tkinter import *
 from time import sleep
 from threading import Thread
-
-
-#Get system info
+from pystray import MenuItem as item
+import pystray
+from PIL import Image, ImageTk
 import subprocess as sub
+
+def quit_window(icon, item):
+    icon.stop()
+    root.destroy()
+def show_window(icon, item):
+    icon.stop()
+    root.after(0,root.deiconify())
+def hide_window():
+    root.withdraw()
+    image=Image.open("/opt/fancontrol/Resources/icon.png")
+    menu=(
+        item('Quit', quit_window),
+        item('Show', show_window, default=True)
+        )
+    icon=pystray.Icon("name", image, "Thinkfan Control", menu)
+    icon.run()
 
 def set_speed(speed=None):
     """
@@ -33,8 +50,6 @@ def get_info():
             result.append("Fan : " + i.split(":")[-1].strip())
             count +=1
 
-        if "Level" in i:
-            result.append(("Level : %r" % speed) + i.split(":")[1].strip())
     return result
 
 def printLevel():
@@ -87,6 +102,7 @@ if __name__ == "__main__":
 
     root = tk.Tk()
     img = tk.Image("photo", file='/opt/fancontrol/Resources/icon.png')
+    root.protocol('WM_DELETE_WINDOW', hide_window)
     root.tk.call('wm','iconphoto',root._w,img)
     root.title("Thinkfan Control")
     MainApplication(root).grid()
