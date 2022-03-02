@@ -1,32 +1,38 @@
-#!/usr/bin/python3
 import tkinter as tk
 import subprocess
+import pystray
 from tkinter import *
 from time import sleep
 from threading import Thread
 from pystray import MenuItem as item
-import pystray
-from PIL import Image, ImageTk
-import subprocess as sub
+from PIL import Image
+
 
 def exit_action(icon):
     icon.visible = False
     icon.stop()
-def show_window(icon, item):
+
+
+def show_window(icon):
     icon.stop()
-    root.after(0,root.deiconify())
-def quit_window(icon, item):
+    root.after(0, root.deiconify())
+
+
+def quit_window(icon):
     icon.stop()
     root.destroy()
+
+
 def hide_window():
     root.withdraw()
-    image=Image.open("/opt/fancontrol/Resources/icon.png")
-    menu=(
-        item('Quit', lambda : exit_action(icon)),
+    image = Image.open("/opt/fancontrol/Resources/icon.png")
+    menu = (
+        item('Quit', lambda: exit_action(icon)),
         item('Show', show_window, default=True)
         )
-    icon=pystray.Icon("name", image, "Thinkfan Control", menu)
+    icon = pystray.Icon("name", image, "Thinkfan Control", menu)
     icon.run()
+
 
 def set_speed(speed=None):
     """
@@ -39,6 +45,7 @@ def set_speed(speed=None):
         shell=True
     ).decode()
 
+
 def get_info():
     info_lines = subprocess.check_output("sensors").decode("utf-8").split("\n")
     result = []
@@ -50,13 +57,8 @@ def get_info():
 
         if "fan" in i:
             result.append("Fan : " + i.split(":")[-1].strip())
-            count +=1
-
+            count += 1
     return result
-
-def printLevel():
-    print("set level to %r" % speed)
-
 
 
 class MainApplication(tk.Frame):
@@ -73,24 +75,19 @@ class MainApplication(tk.Frame):
         row1.grid()
 
         for i in range(8):
-            tk.Button(row1, text=str(i), highlightbackground="#D9D8D6",  highlightcolor="#D9D8D6", highlightthickness = 3, bd = 0, activebackground="#e60012", activeforeground="white", command=lambda x=i: set_speed(x)).grid(
+            tk.Button(row1, text=str(i), highlightbackground="#D9D8D6",  highlightcolor="#D9D8D6", highlightthickness=3, bd=0, activebackground="#e60012", activeforeground="white", command=lambda x=i: set_speed(x)).grid(
                 row=0, column=i + 1
             )
 
-
         row2 = tk.Frame()
         row2.grid()
-        
 
-        tk.Button(row2, text="Auto", highlightbackground="#D9D8D6", highlightcolor="#D9D8D6", highlightthickness = 3, bd = 0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("auto")).grid(
+        tk.Button(row2, text="Auto", highlightbackground="#D9D8D6", highlightcolor="#D9D8D6", highlightthickness=3, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("auto")).grid(
             row=0, column=0
         )
-        tk.Button(row2, text="Full", highlightbackground="#D9D8D6", highlightcolor="#D9D8D6", highlightthickness = 3, bd = 0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("full-speed")).grid(
+        tk.Button(row2, text="Full", highlightbackground="#D9D8D6", highlightcolor="#D9D8D6", highlightthickness=3, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("full-speed")).grid(
             row=0, column=1
         )
-
-        
-
 
         def display_loop():
             while True:
@@ -101,11 +98,10 @@ class MainApplication(tk.Frame):
 
 
 if __name__ == "__main__":
-
     root = tk.Tk()
     img = tk.Image("photo", file='/opt/fancontrol/Resources/icon.png')
     root.protocol('WM_DELETE_WINDOW', hide_window)
-    root.tk.call('wm','iconphoto',root._w,img)
+    root.tk.call('wm', 'iconphoto', root._w, img)
     root.title("Thinkfan Control")
     MainApplication(root).grid()
     root.mainloop()
