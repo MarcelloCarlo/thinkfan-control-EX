@@ -61,7 +61,10 @@ def get_info():
             count += 1
     return result
 
+
 is_on = True
+
+
 class MainApplication(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
         root.configure(background='black')
@@ -90,26 +93,24 @@ class MainApplication(tk.Frame):
             row=0, column=1
         )
 
-
         row3 = tk.Frame()
         row3.grid(sticky=E)
 
         def button_mode():
             global is_on
 
-
-         #Determine it is on or off
+        #Determine it is on or off
             if is_on:
                 on_.config(image=off, borderwidth=0, bg="#FFFFFF",  activebackground="#FFFFFF")
                 is_on = False
             else:
-                on_.config(image = on, borderwidth=0, bg="#000000", activebackground="#000000" )
+                on_.config(image=on, borderwidth=0, bg="#000000", activebackground="#000000")
                 is_on = True
 
-        on = PhotoImage(file ="/opt/fancontrol/Resources/on.png")
-        off = PhotoImage(file ="/opt/fancontrol/Resources/off.png")
+        on = PhotoImage(file="/opt/fancontrol/Resources/on.png")
+        off = PhotoImage(file="/opt/fancontrol/Resources/off.png")
 
-        on_= Button(row3, image =on,bd =0,highlightthickness=0,borderwidth=0,bg="#000000",activebackground="#000000",command = button_mode)
+        on_ = Button(row3, image=on, bd=0, highlightthickness=0, borderwidth=0, bg="#000000", activebackground="#000000", command=button_mode)
         on_.pack()
 
         def display_loop():
