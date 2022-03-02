@@ -18,13 +18,12 @@ case "$mode" in
     4) cp Resources/thinkfan-lxde.desktop /usr/share/applications/thinkfan.desktop ;;
     *) echo "Input not valid" ;;
 esac
-cp fancontrol $install_folder/fancontrol
-rm /bin/fancontrol
+cp src/fancontrol $install_folder/fancontrol
 ln -s $install_folder/fancontrol /bin/fancontrol
 mkdir $install_folder/Resources
 cp Resources/icon.png $install_folder/Resources/icon.png
-cp Resources/thinkfan.desktop
+cp Resources/on.png $install_folder/Resources/on.png
+cp Resources/off.png $install_folder/Resources/off.png
+chmod +r $install_folder/Resources/off.png
 touch /etc/modprobe.d/thinkpad_acpi.conf
 echo "options thinkpad_acpi fan_control=1" > /etc/modprobe.d/thinkpad_acpi.conf
-: 'cp Thinkfan.policy /usr/share/polkit-1/actions/Thinkfan.policy
-cp fan-pkexec $install_folder/fan-pkexec'
