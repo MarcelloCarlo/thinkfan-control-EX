@@ -1,9 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Version=1.1
-Type=Application
-Name=Thinkfan
-Icon=/opt/fancontrol/Resources/icon.png
-Exec=gnome-terminal -- python3 /opt/fancontrol/src/fan.py
-Categories=System;System-Tools;
-
