@@ -23,6 +23,7 @@ It is written for Linux only. For windows, see http://www.almico.com/speedfan.ph
 + python3
 + python-tk
 + pystray
++ gksu
 
 
 ## Setup
