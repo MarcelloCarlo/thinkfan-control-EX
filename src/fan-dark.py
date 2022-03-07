@@ -67,7 +67,6 @@ is_on = True
 
 class MainApplication(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
-        root.configure(background='black')
         tk.Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
         self.parent.minsize(width=100, height=100)
@@ -102,9 +101,11 @@ class MainApplication(tk.Frame):
         #Determine it is on or off
             if is_on:
                 on_.config(image=off, borderwidth=0, bg="#FFFFFF",  activebackground="#FFFFFF")
+                self.master.configure(background="white")
                 is_on = False
             else:
                 on_.config(image=on, borderwidth=0, bg="#000000", activebackground="#000000")
+                self.master.configure(background="black")
                 is_on = True
 
         on = PhotoImage(file="/opt/fancontrol/Resources/on.png")
@@ -124,6 +125,7 @@ class MainApplication(tk.Frame):
 if __name__ == "__main__":
 
     root = tk.Tk()
+    root.configure(background='black')
     img = tk.Image("photo", file='/opt/fancontrol/Resources/icon.png')
     root.protocol('WM_DELETE_WINDOW', hide_window)
     root.resizable(False, False)
