@@ -2,7 +2,7 @@
 install_folder=/opt/fancontrol
 mkdir $install_folder
 mkdir $install_folder/src
-cp src/fan.py $install_folder/src/fan.py ;;
+cp src/fan.py $install_folder/src/fan.py
 cp Resources/thinkfan.desktop /usr/share/applications/thinkfan.desktop
 cp src/fancontrol $install_folder/fancontrol
 ln -s $install_folder/fancontrol /bin/fancontrol
