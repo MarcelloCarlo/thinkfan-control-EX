@@ -2,13 +2,7 @@
 install_folder=/opt/fancontrol
 mkdir $install_folder
 mkdir $install_folder/src
-echo "Enter 1 for light mode or 2 for dark mode"
-read mode 
-case "$mode" in
-    1) cp src/fan.py $install_folder/src/fan.py ;;
-    2) cp src/fan-dark.py $install_folder/src/fan.py ;;
-    *) echo "Input not valid" ;;
-esac
+cp src/fan.py $install_folder/src/fan.py ;;
 cp Resources/thinkfan.desktop /usr/share/applications/thinkfan.desktop
 cp src/fancontrol $install_folder/fancontrol
 ln -s $install_folder/fancontrol /bin/fancontrol
