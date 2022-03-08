@@ -65,30 +65,32 @@ def get_info():
 is_on = True
 
 
+
 class MainApplication(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
         tk.Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
         self.parent.minsize(width=100, height=100)
-
-        main_label = tk.Label(parent, text="", bg="#000000", fg="white")
+        Colour = '#000000'
+        Colour2 = '#FFFFFF'
+        main_label = tk.Label(parent, text="", bg=(Colour), fg=(Colour2))
         main_label.grid(row=0, column=0)
 
         row1 = tk.Frame()
         row1.grid()
 
         for i in range(8):
-            tk.Button(row1, text=str(i), highlightbackground="#1A1C1A", bg="#000000", fg="white", highlightcolor="#1A1C1A", highlightthickness=3, bd=0, activebackground="#e60012", activeforeground="white", command=lambda x=i: set_speed(x)).grid(
+            tk.Button(row1, text=str(i), highlightbackground="#6F7170", bg=(Colour), fg=(Colour2), highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda x=i: set_speed(x)).grid(
                 row=0, column=i + 1
             )
 
         row2 = tk.Frame()
         row2.grid()
 
-        tk.Button(row2, text="Auto", highlightbackground="#1A1C1A", bg="#000000", fg="white", highlightcolor="#1A1C1A", highlightthickness=3, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("auto")).grid(
+        tk.Button(row2, text="Auto", highlightbackground="#6F7170", bg=(Colour), fg=(Colour2), highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("auto")).grid(
             row=0, column=0
         )
-        tk.Button(row2, text="Full", highlightbackground="#1A1C1A", bg="#000000", fg="white", highlightcolor="#1A1C1A", highlightthickness=3, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("full-speed")).grid(
+        tk.Button(row2, text="Full", highlightbackground="#6F7170", bg=(Colour), fg=(Colour2), highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("full-speed")).grid(
             row=0, column=1
         )
 
@@ -101,17 +103,21 @@ class MainApplication(tk.Frame):
         #Determine it is on or off
             if is_on:
                 on_.config(image=off, borderwidth=0, bg="#FFFFFF",  activebackground="#FFFFFF")
+                Colour = '#FFFFFF'
+                Colour2 = '#000000'
                 self.master.configure(background="white")
                 is_on = False
             else:
                 on_.config(image=on, borderwidth=0, bg="#000000", activebackground="#000000")
+                Colour = '#000000'
+                Colour2 = '#FFFFFF'
                 self.master.configure(background="black")
                 is_on = True
 
         on = PhotoImage(file="/opt/fancontrol/Resources/on.png")
         off = PhotoImage(file="/opt/fancontrol/Resources/off.png")
 
-        on_ = Button(row3, image=on, bd=0, highlightthickness=0, borderwidth=0, bg="#000000", activebackground="#000000", command=button_mode)
+        on_ = Button(row3, image=on, bd=0, highlightthickness=0, borderwidth=0, bg=(Colour), activebackground="#000000", command=button_mode)
         on_.pack()
 
         def display_loop():
