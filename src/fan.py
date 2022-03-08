@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import tkinter as tk
 import subprocess
 import pystray
@@ -64,33 +65,32 @@ def get_info():
 is_on = True
 
 
+
 class MainApplication(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
-        root.tk_setPalette(background='#FFFFFF')
         tk.Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
         self.parent.minsize(width=100, height=100)
-
-        main_label = tk.Label(parent, text="",)
+        Colour = StringVar()
+        Colour.set('#000000')
+        main_label = tk.Label(parent, text="", bg=Colour.get(), fg="#6F7170")
         main_label.grid(row=0, column=0)
 
         row1 = tk.Frame()
         row1.grid()
 
         for i in range(8):
-            tk.Button(row1, text=str(i), highlightbackground="#D9D8D6",  highlightcolor="#D9D8D6", highlightthickness=3, bd=0, activebackground="#e60012", activeforeground="white", command=lambda x=i: set_speed(x)).grid(
-                row=0, column=i + 1
-            )
+            button1 = tk.Button(row1, text=str(i), highlightbackground="#6F7170", bg=Colour.get(), fg="#6F7170", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda x=i: set_speed(x))
+            button1.grid(row=0, column=i + 1)
 
         row2 = tk.Frame()
         row2.grid()
 
-        tk.Button(row2, text="Auto", highlightbackground="#D9D8D6", highlightcolor="#D9D8D6", highlightthickness=3, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("auto")).grid(
-            row=0, column=0
-        )
-        tk.Button(row2, text="Full", highlightbackground="#D9D8D6", highlightcolor="#D9D8D6", highlightthickness=3, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("full-speed")).grid(
-            row=0, column=1
-        )
+        button2 = tk.Button(row2, text="Auto", highlightbackground="#6F7170", bg=Colour.get(), fg="#6F7170", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("auto"))
+        button2.grid(row=0, column=0)
+
+        button3 = tk.Button(row2, text="Full", highlightbackground="#6F7170", bg=Colour.get(), fg="#6F7170", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("full-speed"))
+        button3.grid(row=0, column=1)
 
         row3 = tk.Frame()
         row3.grid(sticky=E)
@@ -101,15 +101,25 @@ class MainApplication(tk.Frame):
         #Determine it is on or off
             if is_on:
                 on_.config(image=off, borderwidth=0, bg="#FFFFFF",  activebackground="#FFFFFF")
+                main_label.config(bg='white')
+                button1.config(bg="white")
+                button2.config(bg="white")
+                button3.config(bg="white")
+                self.master.configure(background="white")
                 is_on = False
             else:
                 on_.config(image=on, borderwidth=0, bg="#000000", activebackground="#000000")
+                main_label.config(bg='black')
+                button1.config(bg="black")
+                button2.config(bg="black")
+                button3.config(bg="black")
+                self.master.configure(background="black")
                 is_on = True
 
         on = PhotoImage(file="/opt/fancontrol/Resources/on.png")
         off = PhotoImage(file="/opt/fancontrol/Resources/off.png")
 
-        on_ = Button(row3, image=on, bd=0, highlightthickness=0, borderwidth=0, bg="#000000", activebackground="#000000", command=button_mode)
+        on_ = Button(row3, image=on, bd=0, highlightthickness=0, borderwidth=0, bg=("#000000"), activebackground="#000000", command=button_mode)
         on_.pack()
 
         def display_loop():
@@ -121,7 +131,9 @@ class MainApplication(tk.Frame):
 
 
 if __name__ == "__main__":
+
     root = tk.Tk()
+    root.configure(background='black')
     img = tk.Image("photo", file='/opt/fancontrol/Resources/icon.png')
     root.protocol('WM_DELETE_WINDOW', hide_window)
     root.resizable(False, False)
@@ -129,7 +141,3 @@ if __name__ == "__main__":
     root.title("Thinkfan Control")
     MainApplication(root).grid()
     root.mainloop()
-
-
-
-    
