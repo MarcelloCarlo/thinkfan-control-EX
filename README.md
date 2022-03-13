@@ -2,11 +2,11 @@
 
 # Light Mode
 
-![Screenshot](https://i.imgur.com/tEXcaEQ.png)
+![Screenshot](https://i.imgur.com/2YNm0CD.png)
 
 # Dark Mode
 
-![Screenshot](https://i.imgur.com/t0rEGlc.png)
+![Screenshot](https://i.imgur.com/I0oDYrX.png)
 
 This is an application for controlling fan speed on IBM/Lenovo ThinkPads.
 
