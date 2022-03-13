@@ -73,23 +73,25 @@ class MainApplication(tk.Frame):
         self.parent.minsize(width=100, height=100)
         Colour = StringVar()
         Colour.set('#000000')
-        main_label = tk.Label(parent, text="", bg=Colour.get(), fg="#6F7170")
+        Colour2 = StringVar()
+        Colour2.set('#FFFFFF')
+        main_label = tk.Label(parent, text="", bg=Colour.get(), fg=Colour2.get())
         main_label.grid(row=0, column=0)
 
         row1 = tk.Frame()
         row1.grid()
 
         for i in range(8):
-            button1 = tk.Button(row1, text=str(i), highlightbackground="#6F7170", bg=Colour.get(), fg="#6F7170", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda x=i: set_speed(x))
+            button1 = tk.Button(row1, text=str(i), highlightbackground="#000000", bg="#6F7170", fg="#000000", highlightcolor="#000000", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda x=i: set_speed(x))
             button1.grid(row=0, column=i + 1)
 
         row2 = tk.Frame()
         row2.grid()
 
-        button2 = tk.Button(row2, text="Auto", highlightbackground="#6F7170", bg=Colour.get(), fg="#6F7170", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("auto"))
+        button2 = tk.Button(row2, text="Auto", highlightbackground="#000000", bg="#6F7170", fg="#000000", highlightcolor="#000000", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("auto"))
         button2.grid(row=0, column=0)
 
-        button3 = tk.Button(row2, text="Full", highlightbackground="#6F7170", bg=Colour.get(), fg="#6F7170", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("full-speed"))
+        button3 = tk.Button(row2, text="Full", highlightbackground="#000000", bg="#6F7170", fg="#000000", highlightcolor="#000000", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("full-speed"))
         button3.grid(row=0, column=1)
 
         row3 = tk.Frame()
@@ -102,17 +104,13 @@ class MainApplication(tk.Frame):
             if is_on:
                 on_.config(image=off, borderwidth=0, bg="#FFFFFF",  activebackground="#FFFFFF")
                 main_label.config(bg='white')
-                button1.config(bg="white")
-                button2.config(bg="white")
-                button3.config(bg="white")
+                main_label.config(fg='black')
                 self.master.configure(background="white")
                 is_on = False
             else:
                 on_.config(image=on, borderwidth=0, bg="#000000", activebackground="#000000")
                 main_label.config(bg='black')
-                button1.config(bg="black")
-                button2.config(bg="black")
-                button3.config(bg="black")
+                main_label.config(fg='white')
                 self.master.configure(background="black")
                 is_on = True
 
