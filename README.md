@@ -1,4 +1,4 @@
-# Thinkpad Fan Control GUI
+# Thinkpad Fan Control
 
 # Light Mode
 
