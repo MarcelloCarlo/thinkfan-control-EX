@@ -2,8 +2,9 @@
 [Desktop Entry]
 Version=1.1
 Type=Application
-Name=Thinkfan
+Name=Thinkfan Control
+Comment=A fan controller for Thinkpads
 Icon=/opt/fancontrol/Resources/icon.png
-Exec=gksu python3 /opt/fancontrol/src/fan.py
+Exec=/opt/fancontrol/fan-pkexec
 Categories=System;System-Tools;
 
