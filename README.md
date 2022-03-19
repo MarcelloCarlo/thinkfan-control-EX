@@ -1,6 +1,6 @@
 # Thinkfan Control
 
-# Light Mode
+# Light Mode 
 
 ![Screenshot](https://i.imgur.com/euk2sLL.png)
 
