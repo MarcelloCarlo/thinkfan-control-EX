@@ -22,8 +22,6 @@ It is written for Linux only. For windows, see https://sourceforge.net/projects/
 + lm-sensors
 + python3
 + python-tk
-+ pystray
-+ gksu
 
 
 ## Setup
