@@ -1,38 +1,11 @@
 #!/usr/bin/python3
 import tkinter as tk
 import subprocess
-import pystray
 from tkinter import *
 from time import sleep
 from threading import Thread
-from pystray import MenuItem as item
-from PIL import Image
-
-
-def exit_action(icon):
-    icon.visible = False
-    icon.stop()
-
-
-def show_window(icon):
-    icon.stop()
-    root.after(0, root.deiconify())
-
-
-def quit_window(icon):
-    icon.stop()
-    root.destroy()
-
-
-def hide_window():
-    root.withdraw()
-    image = Image.open("/opt/fancontrol/Resources/icon.png")
-    menu = (
-        item('Quit', lambda: exit_action(icon)),
-        item('Show', show_window, default=True)
-        )
-    icon = pystray.Icon("name", image, "Thinkfan Control", menu)
-    icon.run()
+from PIL import Image, ImageTk
+import subprocess as sub
 
 
 def set_speed(speed=None):
@@ -75,24 +48,46 @@ class MainApplication(tk.Frame):
         Colour.set('#000000')
         Colour2 = StringVar()
         Colour2.set('#FFFFFF')
+
         main_label = tk.Label(parent, text="", bg=Colour.get(), fg=Colour2.get())
         main_label.grid(row=0, column=0)
 
         row1 = tk.Frame()
         row1.grid()
 
-        for i in range(8):
-            button1 = tk.Button(row1, text=str(i), highlightbackground="#000000", bg="#6F7170", fg="#000000", highlightcolor="#000000", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda x=i: set_speed(x))
-            button1.grid(row=0, column=i + 1)
+        button0 = tk.Button(row1, text="0", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("0"))
+        button0.grid(row=0, column=0)
+
+        button1 = tk.Button(row1, text="1", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("1"))
+        button1.grid(row=0, column=1)
+
+        button2 = tk.Button(row1, text="2", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("2"))
+        button2.grid(row=0, column=2)
+
+        button3 = tk.Button(row1, text="3", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("3"))
+        button3.grid(row=0, column=3)
+
+        button4 = tk.Button(row1, text="4", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("4"))
+        button4.grid(row=0, column=4)
+
+        button5 = tk.Button(row1, text="5", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("5"))
+        button5.grid(row=0, column=5)
+
+        button6 = tk.Button(row1, text="6", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("6"))
+        button6.grid(row=0, column=6)
+
+        button7 = tk.Button(row1, text="7", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("7"))
+        button7.grid(row=0, column=7)
 
         row2 = tk.Frame()
         row2.grid()
 
-        button2 = tk.Button(row2, text="Auto", highlightbackground="#000000", bg="#6F7170", fg="#000000", highlightcolor="#000000", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("auto"))
-        button2.grid(row=0, column=0)
 
-        button3 = tk.Button(row2, text="Full", highlightbackground="#000000", bg="#6F7170", fg="#000000", highlightcolor="#000000", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("full-speed"))
-        button3.grid(row=0, column=1)
+        buttonA = tk.Button(row2, text="Auto", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("auto"))
+        buttonA.grid(row=0, column=1)
+
+        buttonF = tk.Button(row2, text="Full", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("full-speed"))
+        buttonF.grid(row=0, column=2)
 
         row3 = tk.Frame()
         row3.grid(sticky=E)
@@ -104,13 +99,55 @@ class MainApplication(tk.Frame):
             if is_on:
                 on_.config(image=off, borderwidth=0, bg="#FFFFFF",  activebackground="#FFFFFF")
                 main_label.config(bg='white')
+                button0.config(bg='white')
+                button1.config(bg='white')
+                button2.config(bg='white')
+                button3.config(bg='white')
+                button4.config(bg='white')
+                button5.config(bg='white')
+                button6.config(bg='white')
+                button7.config(bg='white')
+                buttonA.config(bg='white')
+                buttonF.config(bg='white')
                 main_label.config(fg='black')
+                button0.config(fg='black')
+                button1.config(fg='black')
+                button2.config(fg='black')
+                button3.config(fg='black')
+                button4.config(fg='black')
+                button5.config(fg='black')
+                button6.config(fg='black')
+                button7.config(fg='black')
+                buttonA.config(fg='black')
+                buttonF.config(fg='black')
                 self.master.configure(background="white")
                 is_on = False
             else:
                 on_.config(image=on, borderwidth=0, bg="#000000", activebackground="#000000")
                 main_label.config(bg='black')
+                button0.config(bg='black')
+                button0.config(bg='black')
+                button1.config(bg='black')
+                button2.config(bg='black')
+                button3.config(bg='black')
+                button4.config(bg='black')
+                button5.config(bg='black')
+                button6.config(bg='black')
+                button7.config(bg='black')
+                buttonA.config(bg='black')
+                buttonF.config(bg='black')
                 main_label.config(fg='white')
+                button0.config(fg='white')
+                button0.config(fg='white')
+                button1.config(fg='white')
+                button2.config(fg='white')
+                button3.config(fg='white')
+                button4.config(fg='white')
+                button5.config(fg='white')
+                button6.config(fg='white')
+                button7.config(fg='white')
+                buttonA.config(fg='white')
+                buttonF.config(fg='white')
                 self.master.configure(background="black")
                 is_on = True
 
@@ -133,7 +170,7 @@ if __name__ == "__main__":
     root = tk.Tk()
     root.configure(background='black')
     img = tk.Image("photo", file='/opt/fancontrol/Resources/icon.png')
-    root.protocol('WM_DELETE_WINDOW', hide_window)
+    root.protocol('WM_DELETE_WINDOW')
     root.resizable(False, False)
     root.tk.call('wm', 'iconphoto', root._w, img)
     root.title("Thinkfan Control")
