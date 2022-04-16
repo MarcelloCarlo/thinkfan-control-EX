@@ -8,6 +8,7 @@ cp src/fan.py $install_folder/src/fan.py
 cp src/fan-pkexec $install_folder/fan-pkexec
 cp Resources/Thinkfan.policy /usr/share/polkit-1/actions/Thinkfan.policy
 cp Resources/thinkfan.desktop /usr/share/applications/thinkfan.desktop
+cp Resources/thinkfan.desktop /home/azure/.config/autostart//thinkfan.desktop
 ln -s $install_folder/fan-pkexec /bin/fancontrol
 mkdir $install_folder/Resources
 cp Resources/icon.png $install_folder/Resources/icon.png
