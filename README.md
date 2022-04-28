@@ -23,7 +23,6 @@ It is written for Linux only. For windows, see https://sourceforge.net/projects/
 + python3
 + python-tk
 + pillow-tk
-+ lm sensors
 
 
 ## Setup
