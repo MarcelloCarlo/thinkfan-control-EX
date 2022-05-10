@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import tkinter as tk
 import subprocess
+import threading
 from tkinter import *
 from time import sleep
 from threading import Thread
@@ -13,7 +14,6 @@ def set_speed(speed=None):
     Set speed of fan by changing level at /proc/acpi/ibm/fan
     speed: 0-7, auto, disengaged, full-speed
     """
-    print("set level to %r" % speed)
     return subprocess.check_output(
         'echo level {0} | sudo tee "/proc/acpi/ibm/fan"'.format(speed),
         shell=True
@@ -21,6 +21,7 @@ def set_speed(speed=None):
 
 
 def get_info():
+    #gets sensor information
     info_lines = subprocess.check_output("sensors").decode("utf-8").split("\n")
     result = []
     count = 0
@@ -95,7 +96,7 @@ class MainApplication(tk.Frame):
         def button_mode():
             global is_on
 
-        #Determine it is on or off
+        #Determine it is on or off and theming
             if is_on:
                 on_.config(image=off, borderwidth=0, bg="#FFFFFF",  activebackground="#FFFFFF")
                 main_label.config(bg='white')
@@ -162,8 +163,9 @@ class MainApplication(tk.Frame):
                 sleep(0.5)
                 main_label["text"] = "\n".join(get_info())
 
-        Thread(target=display_loop).start()
-
+        thread = threading.Thread(target=display_loop)
+        thread.daemon = True
+        thread.start()
 
 if __name__ == "__main__":
 
