@@ -102,7 +102,7 @@ class MainApplication(tk.Frame):
         buttonA = tk.Button(row2, text="Auto", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("auto"))
         buttonA.grid(row=0, column=1)
 
-        buttonF = tk.Button(row2, text="disengaged", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("full-speed"))
+        buttonF = tk.Button(row2, text="Full", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("full-speed"))
         buttonF.grid(row=0, column=2)
 
         row3 = tk.Frame()
@@ -115,6 +115,7 @@ class MainApplication(tk.Frame):
             if is_on:
                 on_.config(image=off, borderwidth=0, bg="#FFFFFF",  activebackground="#FFFFFF")
                 main_label.config(bg='white')
+                level_label.config(bg='white')
                 button0.config(bg='white')
                 button1.config(bg='white')
                 button2.config(bg='white')
@@ -126,6 +127,7 @@ class MainApplication(tk.Frame):
                 buttonA.config(bg='white')
                 buttonF.config(bg='white')
                 main_label.config(fg='black')
+                level_label.config(fg='black')
                 button0.config(fg='black')
                 button1.config(fg='black')
                 button2.config(fg='black')
@@ -141,6 +143,7 @@ class MainApplication(tk.Frame):
             else:
                 on_.config(image=on, borderwidth=0, bg="#000000", activebackground="#000000")
                 main_label.config(bg='black')
+                level_label.config(bg='black')
                 button0.config(bg='black')
                 button0.config(bg='black')
                 button1.config(bg='black')
@@ -153,6 +156,7 @@ class MainApplication(tk.Frame):
                 buttonA.config(bg='black')
                 buttonF.config(bg='black')
                 main_label.config(fg='white')
+                level_label.config(fg='white')
                 button0.config(fg='white')
                 button0.config(fg='white')
                 button1.config(fg='white')
@@ -187,12 +191,12 @@ class MainApplication(tk.Frame):
 
 if __name__ == "__main__":
 
-    root = tk.Tk()
+    root = tk.Tk(className='ThinkFan Control')
     root.configure(background='black')
     img = tk.Image("photo", file='/opt/fancontrol/Resources/icon.png')
     root.protocol('WM_DELETE_WINDOW')
     root.resizable(False, False)
     root.tk.call('wm', 'iconphoto', root._w, img)
-    root.title("Thinkfan Control")
+    root.title("ThinkFan Control")
     MainApplication(root).grid()
     root.mainloop()
