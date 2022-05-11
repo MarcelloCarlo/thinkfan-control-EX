@@ -1,12 +1,12 @@
 # Thinkfan Control
 
-# Light Mode 
+# Light Mode
 
 ![Screenshot](https://i.imgur.com/LBL5hCL.png)
 
 # Dark Mode
 
-![Screenshot](https://i.imgur.com/ScWflaz.png)
+![Screenshot](https://i.imgur.com/26BktzX.png)
 
 This is an application for controlling fan speed on IBM/Lenovo ThinkPads.
 
@@ -17,6 +17,7 @@ It is written for Linux only. For windows, see https://sourceforge.net/projects/
 ## How it Works?
  + Parses `sensors` command to show CPU temp and fan RPM
  + Modifies `/proc/acpi/ibm/fan` to change fan speed
+ + to autostart edit the install.sh file
 
 ## Dependencies
 + lm-sensors
