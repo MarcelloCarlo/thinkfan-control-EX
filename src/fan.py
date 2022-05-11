@@ -34,7 +34,16 @@ def get_info():
             result.append("Fan : " + i.split(":")[-1].strip())
             count += 1
     return result
-
+def get_level():
+    #gets level information
+    level_lines = subprocess.check_output(['less', '/proc/acpi/ibm/fan']).decode("utf-8").split("\n")
+    levelresult = []
+    count = 0
+    for j in level_lines:
+        if "level:" in j:
+            levelresult.append("Level : " + j.split(":")[-1].strip())
+            count += 1
+    return levelresult
 
 is_on = True
 
@@ -50,8 +59,14 @@ class MainApplication(tk.Frame):
         Colour2 = StringVar()
         Colour2.set('#FFFFFF')
 
+        level_label = tk.Label(parent, text="", bg=Colour.get(), fg=Colour2.get())
+        level_label.grid(row=1, column=0)
+
         main_label = tk.Label(parent, text="", bg=Colour.get(), fg=Colour2.get())
-        main_label.grid(row=0, column=0)
+        main_label.grid(row=2, column=0)
+
+
+
 
         row1 = tk.Frame()
         row1.grid()
@@ -87,7 +102,7 @@ class MainApplication(tk.Frame):
         buttonA = tk.Button(row2, text="Auto", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("auto"))
         buttonA.grid(row=0, column=1)
 
-        buttonF = tk.Button(row2, text="Full", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("full-speed"))
+        buttonF = tk.Button(row2, text="disengaged", highlightbackground="#6F7170", bg="#000000", fg="#FFFFFF", highlightcolor="#6F7170", highlightthickness=1, bd=0, activebackground="#e60012", activeforeground="white", command=lambda: set_speed("full-speed"))
         buttonF.grid(row=0, column=2)
 
         row3 = tk.Frame()
@@ -162,6 +177,9 @@ class MainApplication(tk.Frame):
             while True:
                 sleep(0.5)
                 main_label["text"] = "\n".join(get_info())
+                level_label["text"] = "\n".join(get_level())
+
+
 
         thread = threading.Thread(target=display_loop)
         thread.daemon = True
