@@ -27,6 +27,7 @@ It is written for Linux only. For windows, see https://sourceforge.net/projects/
 
 
 ## Setup
++ to activate autostart edit install.sh line 11 removing the "#" and adding your user instead of [youruser]
 + chmod +x install.sh
 + sudo ./install.sh
 
