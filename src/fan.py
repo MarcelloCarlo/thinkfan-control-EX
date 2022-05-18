@@ -47,7 +47,8 @@ def get_level():
 
 is_on = True
 
-
+def close_win(e):
+   root.destroy()
 
 class MainApplication(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
@@ -189,9 +190,12 @@ class MainApplication(tk.Frame):
         thread.daemon = True
         thread.start()
 
+
+
 if __name__ == "__main__":
 
     root = tk.Tk(className='ThinkFan Control')
+    root.bind('<Control-q>', lambda e: close_win(e))
     root.configure(background='black')
     img = tk.Image("photo", file='/opt/fancontrol/Resources/icon.png')
     root.protocol('WM_DELETE_WINDOW')
