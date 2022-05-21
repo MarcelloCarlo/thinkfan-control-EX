@@ -55,16 +55,17 @@ class MainApplication(tk.Frame):
         tk.Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
         self.parent.minsize(width=100, height=100)
+        self.configure(background="black", width=10, height=10)
         Colour = StringVar()
         Colour.set('#000000')
         Colour2 = StringVar()
         Colour2.set('#FFFFFF')
 
         level_label = tk.Label(parent, text="", bg=Colour.get(), fg=Colour2.get())
-        level_label.grid(row=1, column=0)
+        level_label.grid(row=2, column=0)
 
         main_label = tk.Label(parent, text="", bg=Colour.get(), fg=Colour2.get())
-        main_label.grid(row=2, column=0)
+        main_label.grid(row=1, column=0)
 
 
 
@@ -139,6 +140,7 @@ class MainApplication(tk.Frame):
                 button7.config(fg='black')
                 buttonA.config(fg='black')
                 buttonF.config(fg='black')
+                self.config(bg='white')
                 self.master.configure(background="white")
                 is_on = False
             else:
@@ -169,6 +171,7 @@ class MainApplication(tk.Frame):
                 button7.config(fg='white')
                 buttonA.config(fg='white')
                 buttonF.config(fg='white')
+                self.config(bg='black')
                 self.master.configure(background="black")
                 is_on = True
 
