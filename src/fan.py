@@ -61,8 +61,8 @@ class MainApplication(tk.Frame):
         Colour2 = StringVar()
         Colour2.set('#FFFFFF')
 
-        level_label = tk.Label(parent, text="", bg=Colour.get(), fg=Colour2.get())
-        level_label.grid(row=2, column=0)
+        level_label = tk.Label(parent, text="", bg=Colour.get(), fg=Colour2.get(), pady=0, highlightthickness=0, borderwidth=0)
+        level_label.grid(row=2, column=0, pady=(0, 10))
 
         main_label = tk.Label(parent, text="", bg=Colour.get(), fg=Colour2.get())
         main_label.grid(row=1, column=0)
