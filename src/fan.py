@@ -31,7 +31,7 @@ def get_info():
             count += 1
 
         if "fan" in i:
-            result.append("Fan : " + i.split(":")[-1].strip())
+            result.append("Fan %d: "  % count + i.split(":")[-1].split("(")[0].strip())
             count += 1
     return result
 def get_level():
