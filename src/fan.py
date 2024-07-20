@@ -23,8 +23,10 @@ def set_speed(speed=None):
 def get_info():
     #gets sensor information
     info_lines = subprocess.check_output("sensors").decode("utf-8").split("\n")
+    cpu_speeds = subprocess.Popen(['grep','cpu MHz', '/proc/cpuinfo'],stdout=subprocess.PIPE)
     result = []
     count = 0
+    cpu_count = 0
     for i in info_lines:
         if "Core" in i:
             result.append("Core %d: " % count + i.split(":")[-1].split("(")[0].strip())
@@ -33,7 +35,15 @@ def get_info():
         if "fan" in i:
             result.append("Fan %d: "  % count + i.split(":")[-1].split("(")[0].strip())
             count += 1
+        if "GPU" in i:
+            result.append("GPU %d: "  % count + i.split(":")[-1].split("(")[0].strip())
+            count += 1
+    for k in cpu_speeds.stdout:
+        result.append("CPU %d: "  % cpu_count + k.decode('utf-8').split(":")[-1].split("(")[0].strip() + " MHz")
+        cpu_count += 1
     return result
+    
+    
 def get_level():
     #gets level information
     level_lines = subprocess.check_output(['less', '/proc/acpi/ibm/fan']).decode("utf-8").split("\n")
@@ -183,7 +193,7 @@ class MainApplication(tk.Frame):
 
         def display_loop():
             while True:
-                sleep(0.5)
+                sleep(0.2)
                 main_label["text"] = "\n".join(get_info())
                 level_label["text"] = "\n".join(get_level())
 

@@ -2,15 +2,15 @@
 
 # Light Mode
 
-![Screenshot](https://i.imgur.com/eh56JkW.png)
+![Screenshot](https://i.imgur.com/daAcVtW.png)
 
 # Dark Mode
 
-![Screenshot](https://i.imgur.com/nkHWKcW.png)
+![Screenshot](https://i.imgur.com/qMY3AX9.png)
 
 This is an application for controlling fan speed on IBM/Lenovo ThinkPads.
 
-It can also monitor CPU temp and fan RPM.
+It can also monitor CPU temp, fan RPM, CPU frequency, and GPU temp.
 
 It is written for Linux only. For windows, see https://sourceforge.net/projects/tp4xfancontrol/
 
